@@ -210,7 +210,7 @@ public class MovieCollection
       System.out.println("" + choiceNum + ". " + cast);
     }
 
-    System.out.println("Which cast member would you like to learn more about?");
+    System.out.println("Which actor would you like to learn more about?");
     System.out.print("Enter number: ");
 
     int choice = scanner.nextInt();
@@ -347,7 +347,7 @@ public class MovieCollection
       System.out.println("" + choiceNum + ". " + genre);
     }
 
-    System.out.println("Which genre member would you like to learn more about?");
+    System.out.println("Which genre would you like to learn more about?");
     System.out.print("Enter number: ");
 
     int choice = scanner.nextInt();
@@ -395,8 +395,8 @@ public class MovieCollection
   {
     ArrayList<Movie> results = new ArrayList<Movie>();
     ArrayList<Movie> temp = movies;
-    insertionSort(temp);
-    for(int i = temp.size() - 1; i >= temp.size() - 51; i--)
+    insertionSortRating(temp);
+    for(int i = temp.size() - 1; i >= temp.size() - 50; i--)
     {
       results.add(temp.get(i));
     }
@@ -409,21 +409,56 @@ public class MovieCollection
       // this will print index 0 as choice 1 in the results list; better for user!
       int choiceNum = i + 1;
 
-      System.out.println("" + choiceNum + ". " + top50);
+      System.out.println("" + choiceNum + ". " + top50 + " (" + results.get(i).getUserRating() + ")");
     }
 
-    System.out.println("Which genre member would you like to learn more about?");
+    System.out.println("Which movie would you like to learn more about?");
     System.out.print("Enter number: ");
 
     int choice = scanner.nextInt();
     scanner.nextLine();
 
+    Movie selectedMovie = results.get(choice - 1);
 
+    displayMovieInfo(selectedMovie);
+
+    System.out.println("\n ** Press Enter to Return to Main Menu **");
+    scanner.nextLine();
   }
   
   private void listHighestRevenue()
   {
-  
+    ArrayList<Movie> results = new ArrayList<Movie>();
+    ArrayList<Movie> temp = movies;
+    insertionSortRevenue(temp);
+    for(int i = temp.size() - 1; i >= temp.size() - 50; i--)
+    {
+      results.add(temp.get(i));
+    }
+
+    // now, display them all to the user
+    for (int i = 0; i < results.size(); i++)
+    {
+      Movie top50 = results.get(i);
+
+      // this will print index 0 as choice 1 in the results list; better for user!
+      int choiceNum = i + 1;
+
+      System.out.println("" + choiceNum + ". " + top50 + " ($" + results.get(i).getRevenue() + ")");
+    }
+
+    System.out.println("Which movie would you like to learn more about?");
+    System.out.print("Enter number: ");
+
+    int choice = scanner.nextInt();
+    scanner.nextLine();
+
+    Movie selectedMovie = results.get(choice - 1);
+
+    displayMovieInfo(selectedMovie);
+
+    System.out.println("\n ** Press Enter to Return to Main Menu **");
+    scanner.nextLine();
   }
   
   private void importMovieList(String fileName)
@@ -479,7 +514,7 @@ public class MovieCollection
     }
   }
 
-  public static void insertionSort(ArrayList<Movie> n)
+  public static void insertionSortRating(ArrayList<Movie> n)
   {
     for (int j = 1; j < n.size(); j++)
     {
@@ -487,10 +522,28 @@ public class MovieCollection
       int possibleIndex = j;
       while ((possibleIndex > 0) && temp < n.get(possibleIndex - 1).getUserRating())
       {
+        Movie y = n.get(possibleIndex);
         n.set(possibleIndex, n.get(possibleIndex - 1));
+        n.set(possibleIndex-1, y);
         possibleIndex--;
       }
-      n.set(possibleIndex, n.get(j));
     }
   }
+
+  public static void insertionSortRevenue(ArrayList<Movie> n)
+  {
+    for (int j = 1; j < n.size(); j++)
+    {
+      double temp = n.get(j).getRevenue();
+      int possibleIndex = j;
+      while ((possibleIndex > 0) && temp < n.get(possibleIndex - 1).getRevenue())
+      {
+        Movie y = n.get(possibleIndex);
+        n.set(possibleIndex, n.get(possibleIndex - 1));
+        n.set(possibleIndex-1, y);
+        possibleIndex--;
+      }
+    }
+  }
+
 }
