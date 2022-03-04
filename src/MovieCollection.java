@@ -84,13 +84,10 @@ public class MovieCollection
     System.out.print("Enter a title search term: ");
     String searchTerm = scanner.nextLine();
     
-    // prevent case sensitivity
     searchTerm = searchTerm.toLowerCase();
     
-    // arraylist to hold search results
     ArrayList<Movie> results = new ArrayList<Movie>();
     
-    // search through ALL movies in collection
     for (int i = 0; i < movies.size(); i++)
     {
       String movieTitle = movies.get(i).getTitle();
@@ -98,20 +95,16 @@ public class MovieCollection
       
       if (movieTitle.indexOf(searchTerm) != -1)
       {
-        //add the Movie object to the results list
         results.add(movies.get(i));
       }
     }
     
-    // sort the results by title
     sortResults(results);
     
-    // now, display them all to the user    
     for (int i = 0; i < results.size(); i++)
     {
       String title = results.get(i).getTitle();
       
-      // this will print index 0 as choice 1 in the results list; better for user!
       int choiceNum = i + 1;
       
       System.out.println("" + choiceNum + ". " + title);
@@ -166,13 +159,10 @@ public class MovieCollection
     System.out.print("Enter a cast search term: ");
     String searchTerm = scanner.nextLine();
 
-    // prevent case sensitivity
     searchTerm = searchTerm.toLowerCase();
 
-    // arraylist to hold search results
     ArrayList<String> results = new ArrayList<String>();
 
-    // search through ALL movies in collection
     for (int i = 0; i < movies.size(); i++) {
       String movieTitle = movies.get(i).getCast();
       movieTitle = movieTitle.toLowerCase();
@@ -188,7 +178,6 @@ public class MovieCollection
       }
     }
 
-    // sort the results by title
     insertionSortWordList(results);
     for (int j = 0; j < results.size() - 1; j++)
     {
@@ -199,12 +188,10 @@ public class MovieCollection
       }
     }
 
-    // now, display them all to the user
     for (int i = 0; i < results.size(); i++)
     {
       String cast = results.get(i);
 
-      // this will print index 0 as choice 1 in the results list; better for user!
       int choiceNum = i + 1;
 
       System.out.println("" + choiceNum + ". " + cast);
@@ -229,12 +216,10 @@ public class MovieCollection
     }
     sortResults(results2);
 
-    // now, display them all to the user
     for (int i = 0; i < results2.size(); i++)
     {
       String keywords = results2.get(i).getTitle();
 
-      // this will print index 0 as choice 1 in the results list; better for user!
       int choiceNum = i + 1;
 
       System.out.println("" + choiceNum + ". " + keywords);
@@ -259,13 +244,10 @@ public class MovieCollection
     System.out.print("Enter a keyword search term: ");
     String searchTerm = scanner.nextLine();
 
-    // prevent case sensitivity
     searchTerm = searchTerm.toLowerCase();
 
-    // arraylist to hold search results
     ArrayList<Movie> results = new ArrayList<Movie>();
 
-    // search through ALL movies in collection
     for (int i = 0; i < movies.size(); i++)
     {
       String movieTitle = movies.get(i).getKeywords();
@@ -273,20 +255,16 @@ public class MovieCollection
 
       if (movieTitle.indexOf(searchTerm) != -1)
       {
-        //add the Movie object to the results list
         results.add(movies.get(i));
       }
     }
 
-    // sort the results by title
     sortResults(results);
 
-    // now, display them all to the user
     for (int i = 0; i < results.size(); i++)
     {
       String keywords = results.get(i).getKeywords();
 
-      // this will print index 0 as choice 1 in the results list; better for user!
       int choiceNum = i + 1;
 
       System.out.println("" + choiceNum + ". " + keywords);
@@ -308,10 +286,8 @@ public class MovieCollection
   
   private void listGenres()
   {
-    // arraylist to hold search results
     ArrayList<String> results = new ArrayList<String>();
 
-    // search through ALL movies in collection
     for (int i = 0; i < movies.size(); i++) {
       String movieGenre = movies.get(i).getCast();
       movieGenre = movieGenre.toLowerCase();
@@ -325,7 +301,6 @@ public class MovieCollection
 
     }
 
-    // sort the results by title
     insertionSortWordList(results);
     for (int j = 0; j < results.size() - 1; j++)
     {
@@ -336,12 +311,10 @@ public class MovieCollection
       }
     }
 
-    // now, display them all to the user
     for (int i = 0; i < results.size(); i++)
     {
       String genre = results.get(i);
 
-      // this will print index 0 as choice 1 in the results list; better for user!
       int choiceNum = i + 1;
 
       System.out.println("" + choiceNum + ". " + genre);
@@ -366,12 +339,10 @@ public class MovieCollection
     }
     sortResults(results2);
 
-    // now, display them all to the user
     for (int i = 0; i < results2.size(); i++)
     {
       String keywords = results2.get(i).getTitle();
 
-      // this will print index 0 as choice 1 in the results list; better for user!
       int choiceNum = i + 1;
 
       System.out.println("" + choiceNum + ". " + keywords);
@@ -401,12 +372,10 @@ public class MovieCollection
       results.add(temp.get(i));
     }
 
-    // now, display them all to the user
     for (int i = 0; i < results.size(); i++)
     {
       Movie top50 = results.get(i);
 
-      // this will print index 0 as choice 1 in the results list; better for user!
       int choiceNum = i + 1;
 
       System.out.println("" + choiceNum + ". " + top50 + " (" + results.get(i).getUserRating() + ")");
@@ -436,12 +405,10 @@ public class MovieCollection
       results.add(temp.get(i));
     }
 
-    // now, display them all to the user
     for (int i = 0; i < results.size(); i++)
     {
       Movie top50 = results.get(i);
 
-      // this will print index 0 as choice 1 in the results list; better for user!
       int choiceNum = i + 1;
 
       System.out.println("" + choiceNum + ". " + top50 + " ($" + results.get(i).getRevenue() + ")");
@@ -494,8 +461,7 @@ public class MovieCollection
     }
     catch(IOException exception)
     {
-      // Print out the exception that occurred
-      System.out.println("Unable to access " + exception.getMessage());              
+      System.out.println("Unable to access " + exception.getMessage());
     }
   }
 
